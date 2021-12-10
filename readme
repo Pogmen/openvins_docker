@@ -1,0 +1,14 @@
+创建docker
+docker build -t pogman/openvins_v2 /home/pogman/docker-workspace/docker_openvins
+docker build -t image_name dockerfile_path
+运行docker
+docker run -itd -v /home/pogman/docker-workspace/docker_openvins:/root/Dataset:ro -p 5902:5902 pogman/openvins_v2
+docker run -itd -v 需要挂载的路径:镜像中挂载的路径:ro -p 5902:5902 image_name
+在vnc输入127.0.0.1:5902进入界面
+本版本需要在界面再进行openvins的编译，暂时还不能再创建docker的时候进行catkin build，原因还不清楚，编译之前需要输入source /opt/ros/melodic/setup.bash
+运行之前需要修改launch文件中bag包的地址
+在catkin_ws_ov中运行命令：
+source devel/setup.bash
+roslaunch ov_msckf name.launch
+
+VNC地址在https://www.realvnc.com/en/connect/download/viewer/
